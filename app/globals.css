@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: #ffffff;
+  color: #1a1414;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: background-color 0.25s ease;
+}
+
+::selection {
+  background: #c81e3a;
+  color: #ffffff;
+}
+
+/* Faint blueprint grid backdrop */
+.bp-grid {
+  background-image: linear-gradient(#f1d6d6 1px, transparent 1px),
+    linear-gradient(90deg, #f1d6d6 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Signature element: exploded-diagram callout — a dotted leader line
+   connecting a data value to its provenance tag, echoing annotated
+   technical/engineering drawings. */
+.callout {
+  position: relative;
+}
+
+.callout::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  border-top: 1px dashed #c81e3a;
+  opacity: 0.7;
+}
+
+.callout-dot {
+  position: relative;
+}
+
+.callout-dot::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c81e3a;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 3px rgba(200, 30, 58, 0.15);
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scan-line {
+  animation: scan 2.4s linear infinite;
+}
+
+/* Modern UI polish: smooth, consistent transitions everywhere */
+button,
+a,
+input,
+textarea,
+select {
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-lift {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -16px rgba(200, 30, 58, 0.22);
+  border-color: #c81e3a;
+}
+
+/* Smooth confidence-bar fill animation */
+.confidence-fill {
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-line {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #c81e3a;
+  outline-offset: 2px;
+}
